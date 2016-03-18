@@ -11,4 +11,9 @@
     <string name="err_msg_email">Enter valid email address</string>
     <string name="err_msg_password">Enter the password</string>
 
+    <string name="pos_a">AORTIC</string>
+    <string name="pos_m">MITRAL</string>
+    <string name="pos_t">TRICUSPID</string>
+    <string name="pos_p">PULMONIC</string>
+
 </resources>

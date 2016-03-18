@@ -5,10 +5,12 @@ import android.content.ClipDescription;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import kr.ac.snu.boncoeur2016.util.Define;
 
@@ -17,9 +19,10 @@ import kr.ac.snu.boncoeur2016.util.Define;
  */
 public class PositioningActivity extends AppCompatActivity implements View.OnLongClickListener, View.OnClickListener {
 
-    ImageView t, p, a, m;
+    ImageView t, p, a, m, record;
     RelativeLayout back;
-    LinearLayout container;
+    RelativeLayout container;
+    TextView pos_m, pos_p, pos_a, pos_t;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +56,22 @@ public class PositioningActivity extends AppCompatActivity implements View.OnLon
         DragListener listener = new DragListener();
         back.setOnDragListener(listener);
 
-        container = (LinearLayout)findViewById(R.id.pos_message_container);
+        container = (RelativeLayout)findViewById(R.id.pos_message_container);
+        pos_m = (TextView)findViewById(R.id.pos_message_m);
+        pos_p = (TextView)findViewById(R.id.pos_message_p);
+        pos_t = (TextView)findViewById(R.id.pos_message_t);
+        pos_a = (TextView)findViewById(R.id.pos_message_a);
+        record = (ImageView)findViewById(R.id.pos_record);
+        record.setOnClickListener(this);
+        back.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(container.getVisibility() == View.VISIBLE){
+                    container.setVisibility(View.INVISIBLE);
+                }
+                return false;
+            }
+        });
 
     }
 
@@ -65,21 +83,69 @@ public class PositioningActivity extends AppCompatActivity implements View.OnLon
         ClipData.Item item = new ClipData.Item((CharSequence) v.getTag());
         ClipData dragData = new ClipData(v.getTag().toString(), mimeTypes, item);
 
-        View.DragShadowBuilder myShadow = new View.DragShadowBuilder(v);
+        View.DragShadowBuilder myShadow = new DragShadow(v);
         v.startDrag(dragData, myShadow, null, 0);
         return false;
     }
 
     @Override
     public void onClick(View v) {
-
         int x = (int)v.getX();
         int y = (int)v.getY();
-        Log.d("test", "touched x: " + x +", y: "+y);
-        container.layout(x, y, x + 300, y + 300);
-        container.setVisibility(View.VISIBLE);
-        Log.d("test", "touched x: " + container.getX() + ", y: " + container.getY());
 
+        switch(v.getId()){
+            case R.id.pos_m:
+                container.layout(x, y, x + 300, y + 300);
+                container.setVisibility(View.VISIBLE);
+                checkVisibility();
+                pos_m.setVisibility(View.VISIBLE);
+                break;
+            case R.id.pos_p:
+                container.layout(x, y, x + 300, y + 300);
+                container.setVisibility(View.VISIBLE);
+                checkVisibility();
+                pos_p.setVisibility(View.VISIBLE);
+                break;
+            case R.id.pos_a:
+                container.layout(x, y, x + 300, y + 300);
+                container.setVisibility(View.VISIBLE);
+                checkVisibility();
+                pos_a.setVisibility(View.VISIBLE);
+                break;
+            case R.id.pos_t:
+                container.layout(x, y, x + 300, y + 300);
+                container.setVisibility(View.VISIBLE);
+                checkVisibility();
+                pos_t.setVisibility(View.VISIBLE);
+                break;
+            case R.id.pos_record:
+                Toast.makeText(getApplicationContext(), "녹음화면 이동 ", Toast.LENGTH_SHORT).show();
+
+        }
+
+
+    }
+
+    private void checkVisibility() {
+        if(pos_p.getVisibility() == View.VISIBLE){
+            pos_p.setVisibility(View.INVISIBLE);
+        }else if(pos_m.getVisibility() == View.VISIBLE){
+            pos_m.setVisibility(View.INVISIBLE);
+        }else if(pos_a.getVisibility() == View.VISIBLE){
+            pos_a.setVisibility(View.INVISIBLE);
+        }else if(pos_t.getVisibility() == View.VISIBLE){
+            pos_t.setVisibility(View.INVISIBLE);
+        }
+
+    }
+
+    private void setContainer(int x, int y, String position) {
+
+
+        Log.d("test", "before visibility touched x: " + container.getX() + ", y: " + container.getY());
+
+
+        Log.d("test", "after touched x: " + container.getX() + ", y: " + container.getY());
 
     }
 }

@@ -39,23 +39,23 @@ public class DragListener implements View.OnDragListener {
                     float x = event.getX();
                     float y = event.getY();
                     ImageView test = (ImageView)v.findViewById(R.id.pos_t);
-                    test.layout((int)x, (int)y, (int)x+100, (int)y+100);
+                    test.layout((int)x-55, (int)y-55, (int)x+5, (int)y+5);
 
                 }else if(dragData.equals(Define.POS_TAG_M)) {
                     float x = event.getX();
                     float y = event.getY();
                     ImageView test = (ImageView)v.findViewById(R.id.pos_m);
-                    test.layout((int) x, (int) y, (int) x + 100, (int) y + 100);
+                    test.layout((int)x-55, (int)y-55, (int)x+5, (int)y+5);
                 }else if(dragData.equals(Define.POS_TAG_A)) {
                     float x = event.getX();
                     float y = event.getY();
                     ImageView test = (ImageView)v.findViewById(R.id.pos_a);
-                    test.layout((int) x, (int) y, (int) x + 100, (int) y + 100);
+                    test.layout((int)x-55, (int)y-55, (int)x+5, (int)y+5);
                 }else if(dragData.equals(Define.POS_TAG_P)) {
                     float x = event.getX();
                     float y = event.getY();
                     ImageView test = (ImageView)v.findViewById(R.id.pos_p);
-                    test.layout((int) x, (int) y, (int) x + 100, (int) y + 100);
+                    test.layout((int)x-55, (int)y-55, (int)x+5, (int)y+5);
                 }
 
 

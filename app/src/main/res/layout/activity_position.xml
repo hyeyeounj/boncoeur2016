@@ -8,60 +8,92 @@
 
     <ImageView
         android:id="@+id/pos_a"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginLeft="140dp"
-        android:layout_marginTop="180dp"
-        android:background="#fedd9a" />
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginLeft="170dp"
+        android:layout_marginTop="240dp"
+        android:background="@drawable/circle"
+        />
 
     <ImageView
         android:id="@+id/pos_p"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginLeft="200dp"
-        android:layout_marginTop="180dp"
-        android:background="#fedd9a" />
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginLeft="210dp"
+        android:layout_marginTop="240dp"
+        android:background="@drawable/circle"/>
 
     <ImageView
         android:id="@+id/pos_t"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="230dp"
-        android:background="#fedd9a" />
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginLeft="190dp"
+        android:layout_marginTop="260dp"
+        android:background="@drawable/circle" />
 
     <ImageView
         android:id="@+id/pos_m"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginLeft="200dp"
-        android:layout_marginTop="230dp"
-        android:background="#fedd9a" />
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginLeft="220dp"
+        android:layout_marginTop="270dp"
+        android:background="@drawable/circle" />
 
-    <LinearLayout
+
+    <RelativeLayout
         android:id="@+id/pos_message_container"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="match_parent"
         android:background="#99423241"
         android:orientation="vertical"
         android:visibility="invisible"
         >
 
         <TextView
-            android:id="@+id/pos_message"
+            android:id="@+id/pos_message_m"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="20dp"
+            android:text="@string/pos_m"
             android:textColor="@android:color/white"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:id="@+id/pos_message_p"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text="@string/pos_p"
+            android:textColor="@android:color/white"
+            android:textSize="16dp"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:id="@+id/pos_message_t"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text="@string/pos_t"
+            android:textColor="@android:color/white"
+            android:textSize="16dp"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:id="@+id/pos_message_a"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text="@string/pos_a"
+            android:textColor="@android:color/white"
+            android:textSize="16dp"
+            android:visibility="invisible"/>
+
 
         <ImageView
+            android:layout_marginLeft="15dp"
             android:id="@+id/pos_record"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/pos_message_m"
             android:src="@android:drawable/ic_media_play" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>
