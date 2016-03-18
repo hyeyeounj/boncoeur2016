@@ -1,5 +1,6 @@
 package kr.ac.snu.boncoeur2016;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -19,7 +20,7 @@ public class LoginActivity extends AppCompatActivity{
 
     public EditText inputEmail, inputPassword;
     public TextInputLayout inputLayoutEmail, inputLayoutPassword;
-    private Button btnSignUp;
+    private Button btnLogIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,14 @@ public class LoginActivity extends AppCompatActivity{
         inputEmail = (EditText) findViewById(R.id.input_email);
         inputPassword = (EditText) findViewById(R.id.input_password);
 
-        btnSignUp = (Button) findViewById(R.id.btn_signup);
+        btnLogIn = (Button) findViewById(R.id.btn_login);
+        btnLogIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, PositioningActivity.class);
+                startActivity(intent);
+            }
+        });
 
         inputEmail.addTextChangedListener(new TextWatcher() {
             @Override
