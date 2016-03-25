@@ -19,7 +19,7 @@
 
     <style name="circle">
 
-        <item name="android:radius">@dimen/snackbar_padding_vertical_2lines</item>
+
     </style>
 
 </resources>

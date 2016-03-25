@@ -11,7 +11,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
-import kr.ac.snu.boncoeur2016.util.ValidCheck;
+import kr.ac.snu.boncoeur2016.utils.ValidCheck;
 
 /**
  * Created by hyes on 2016. 3. 16..

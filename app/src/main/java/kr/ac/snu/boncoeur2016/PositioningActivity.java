@@ -2,6 +2,7 @@ package kr.ac.snu.boncoeur2016;
 
 import android.content.ClipData;
 import android.content.ClipDescription;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -10,9 +11,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import kr.ac.snu.boncoeur2016.util.Define;
+import kr.ac.snu.boncoeur2016.utils.Define;
 
 /**
  * Created by hyes on 2016. 3. 17..
@@ -50,8 +50,6 @@ public class PositioningActivity extends AppCompatActivity implements View.OnLon
         p.setOnLongClickListener(this);
         a.setOnLongClickListener(this);
         m.setOnLongClickListener(this);
-
-
 
         DragListener listener = new DragListener();
         back.setOnDragListener(listener);
@@ -119,8 +117,8 @@ public class PositioningActivity extends AppCompatActivity implements View.OnLon
                 pos_t.setVisibility(View.VISIBLE);
                 break;
             case R.id.pos_record:
-                Toast.makeText(getApplicationContext(), "녹음화면 이동 ", Toast.LENGTH_SHORT).show();
-
+                Intent intent = new Intent(PositioningActivity.this, RecordingActivity.class);
+                startActivity(intent);
         }
 
 

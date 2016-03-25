@@ -1,4 +1,4 @@
-package kr.ac.snu.boncoeur2016.util;
+package kr.ac.snu.boncoeur2016.utils;
 
 import android.text.TextUtils;
 

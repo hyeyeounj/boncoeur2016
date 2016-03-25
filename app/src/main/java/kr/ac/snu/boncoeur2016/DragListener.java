@@ -7,7 +7,7 @@ import android.view.DragEvent;
 import android.view.View;
 import android.widget.ImageView;
 
-import kr.ac.snu.boncoeur2016.util.Define;
+import kr.ac.snu.boncoeur2016.utils.Define;
 
 /**
  * Created by hyes on 2016. 3. 17..
