@@ -1,6 +1,7 @@
 package kr.ac.snu.boncoeur2016;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -19,12 +20,18 @@ public class RecordingActivity extends AppCompatActivity implements View.OnClick
     private RecordingThread recordingThread;
     Context context;
 
-    TextView record_btn;
+    String name;
+    int age;
+
+    TextView record_btn, patient_info;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recording);
         context = this;
+
+        patient_info = (TextView)findViewById(R.id.patient_info);
+
         record_btn = (TextView)findViewById(R.id.record_btn);
         record_btn.setOnClickListener(this);
         waveformView = (WaveFormView)findViewById(R.id.waveformView);
@@ -35,6 +42,11 @@ public class RecordingActivity extends AppCompatActivity implements View.OnClick
                 waveformView.setSamples(data);
             }
         });
+
+        Intent intent = getIntent();
+        name =  intent.getStringExtra("name");
+        age = intent.getIntExtra("age", 0);
+        patient_info.setText(name + " , " + age);
     }
 
     private void startAudioRecordingSafe() {
@@ -51,11 +63,13 @@ public class RecordingActivity extends AppCompatActivity implements View.OnClick
 
         switch(v.getId()){
             case R.id.record_btn:
-                Log.d("test", "record onclick");
+
                 if (!recordingThread.recording()) {
                     startAudioRecordingSafe();
+                    Log.d("test", "record start");
                 } else {
                     recordingThread.stopRecording();
+                    Log.d("test", "record stop");
                 }
                 break;
         }

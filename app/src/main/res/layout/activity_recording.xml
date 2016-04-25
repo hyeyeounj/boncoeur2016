@@ -12,6 +12,14 @@
         android:layout_weight="1"
         android:id="@+id/progressBar" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/patient_info"
+        android:gravity="center_horizontal" />
+
     <LinearLayout
         android:orientation="vertical"
         android:id="@+id/signal_container"

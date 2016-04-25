@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please enter name"
+        android:id="@+id/textView4"
+        android:layout_gravity="center_vertical"
+        android:textSize="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="40dp"
+        android:textColor="#424242"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/target_name"
+        android:layout_gravity="center_vertical"
+        android:textSize="20dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:textColor="#424242"
+        android:layout_marginBottom="40dp"
+        android:hint="Name"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please enter age"
+        android:id="@+id/textView5"
+        android:layout_gravity="center_vertical"
+        android:textSize="20dp"
+        android:layout_marginLeft="40dp"
+        android:textColor="#424242"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="numerical number only"
+        android:id="@+id/textView8"
+        android:layout_gravity="center_vertical"
+        android:textSize="14dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="40dp"
+        android:textColor="#424242" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/target_age"
+        android:layout_gravity="center_vertical"
+        android:textSize="20dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:textColor="#424242"
+        android:layout_marginBottom="40dp"
+        android:hint="Age"/>
+
+    <Button
+        android:layout_width="240dp"
+        android:layout_height="80dp"
+        android:text="START"
+        android:id="@+id/start_btn"
+        android:background="@drawable/customize_button_basic"
+        android:textSize="24dp"
+        android:textColor="#424242"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"
+
+
+        />
+</LinearLayout>

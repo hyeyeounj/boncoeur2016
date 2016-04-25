@@ -1,14 +1,15 @@
 package kr.ac.snu.boncoeur2016;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
-import android.net.Uri;
-import android.provider.MediaStore;
 import android.util.Log;
 
+import java.io.BufferedOutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -56,20 +57,24 @@ public class RecordingThread {
 
         mShouldContinue = false;
         mThread = null;
-        timestamp = new SimpleDateFormat("yyyyMMddHHmmss");
-        fileName = "aaaaa"+timestamp.format(new Date()).toString() + "REC.mp4";
-        ContentValues values = new ContentValues(10);
 
-        values.put(MediaStore.MediaColumns.TITLE, Define.RECORDED_FILEPATH + fileName);
-        values.put(MediaStore.MediaColumns.MIME_TYPE, "audio/mp4");
-        values.put(MediaStore.Audio.Media.DATA, Define.RECORDED_FILEPATH + fileName);
+        //fileName = "aaa"+timestamp.format(new Date()).toString() + "REC.mp4";
 
-        Uri audioUri = context.getContentResolver().insert(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, values);
+    }
+
+    private byte[] short2byte(short[] sData) {
+        int shortArrsize = sData.length;
+        byte[] bytes = new byte[shortArrsize * 2];
+        for (int i = 0; i < shortArrsize; i++) {
+            bytes[i * 2] = (byte) (sData[i] & 0x00FF);
+            bytes[(i * 2) + 1] = (byte) (sData[i] >> 8);
+            sData[i] = 0;
+        }
+        return bytes;
 
     }
 
     private void record() {
-        Log.d("test", "Record Start");
         android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_AUDIO);
 
         // buffer size in bytes
@@ -81,6 +86,7 @@ public class RecordingThread {
             bufferSize = SAMPLE_RATE * 2;
         }
 
+        byte audioData[] = new byte[bufferSize];
         short[] audioBuffer = new short[bufferSize / 2];
 
         AudioRecord record = new AudioRecord(MediaRecorder.AudioSource.DEFAULT,
@@ -89,25 +95,49 @@ public class RecordingThread {
                 AudioFormat.ENCODING_PCM_16BIT,
                 bufferSize);
 
+
         if (record.getState() != AudioRecord.STATE_INITIALIZED) {
             Log.e("test", "Audio Record can't initialize!");
             return;
         }
         record.startRecording();
 
-        Log.v("test", "Start recording");
+        timestamp = new SimpleDateFormat("yyyyMMddHHmmss");
+        String filePath = Define.RECORDED_FILEPATH + "_" + timestamp.format(new Date()).toString() + "REC.wav";
+        //사용할 수 없는 파일 형식 ;; 확인
+
+        BufferedOutputStream os = null;
+        try {
+            os = new BufferedOutputStream(new FileOutputStream(filePath));
+        } catch (FileNotFoundException e) {
+            Log.d("test", "File not found for recording ", e);
+        }
 
         long shortsRead = 0;
         while (mShouldContinue) {
             int numberOfShort = record.read(audioBuffer, 0, audioBuffer.length);
             shortsRead += numberOfShort;
-
             // Notify waveform
             mListener.onAudioDataReceived(audioBuffer);
+            byte bData[] = short2byte(audioBuffer);
+            try {
+                os.write(bData, 0, audioBuffer.length * 2);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+
+
+        try {
+            os.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
         record.stop();
         record.release();
+
 
         Log.v("test", String.format("Recording stopped. Samples read: %d", shortsRead));
     }
