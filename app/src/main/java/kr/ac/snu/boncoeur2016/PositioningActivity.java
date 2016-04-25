@@ -22,7 +22,9 @@ public class PositioningActivity extends AppCompatActivity implements View.OnLon
     ImageView t, p, a, m, record;
     RelativeLayout back;
     RelativeLayout container;
-    TextView pos_m, pos_p, pos_a, pos_t;
+    TextView pos_m, pos_p, pos_a, pos_t, patient_name;
+    String name;
+    int age;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,8 @@ public class PositioningActivity extends AppCompatActivity implements View.OnLon
         setContentView(R.layout.activity_position);
 
         back = (RelativeLayout)findViewById(R.id.back);
+
+        patient_name = (TextView)findViewById(R.id.patient_info);
 
         t = (ImageView)findViewById(R.id.pos_t);
         p = (ImageView)findViewById(R.id.pos_p);
@@ -71,6 +75,12 @@ public class PositioningActivity extends AppCompatActivity implements View.OnLon
             }
         });
 
+        Intent intent = getIntent();
+        name =  intent.getStringExtra("name");
+        age = intent.getIntExtra("age", 0);
+        patient_name.setText(name + ", " + age);
+
+        //selected_position = intent.getStringExtra("selectedPos");
     }
 
 
@@ -118,6 +128,9 @@ public class PositioningActivity extends AppCompatActivity implements View.OnLon
                 break;
             case R.id.pos_record:
                 Intent intent = new Intent(PositioningActivity.this, RecordingActivity.class);
+                intent.putExtra("name", name);
+                intent.putExtra("age", age);
+              //  startActivityForResult(intent, TARGET_NAME);
                 startActivity(intent);
         }
 
@@ -144,6 +157,11 @@ public class PositioningActivity extends AppCompatActivity implements View.OnLon
 
 
         Log.d("test", "after touched x: " + container.getX() + ", y: " + container.getY());
+
+    }
+
+    @Override
+    public void onBackPressed() {
 
     }
 }
