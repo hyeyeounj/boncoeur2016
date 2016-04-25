@@ -19,17 +19,29 @@
         
         <activity android:name=".LoginActivity"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity android:name=".PositioningActivity"
             android:screenOrientation="portrait">
 
         </activity>
         <activity android:name=".RecordingActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity android:name=".NameListActivity"/>
+        <activity android:name=".RecordTargetInfoActivity"/>
+        <activity android:name=".IntroActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+        <activity android:name=".MenuActivity"/>
+
     </application>
 
 </manifest>
